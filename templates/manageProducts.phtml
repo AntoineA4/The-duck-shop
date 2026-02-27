@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/index.css">
+    <link rel="stylesheet" href="./assets/manageProducts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>My ducky world</h1>
+        <nav>
+            <ul id="nav-barre">
+                <li>
+                    <?php if (isset($_SESSION['user'])) : ?>
+                        Bienvenue <?= $_SESSION['user']['login']; ?>
+                        <a href="logout.php">Logout</a>
+                    <?php else : ?>
+                        <a href="login.php">Login</a>
+                    <?php endif; ?>
+                </li>
+                <li><a href="index.php">Accueil</a></li>
+                <li><a href="#">Produits</a></li>
+                <li><?php if (isset($_SESSION['user'])) : ?>
+                        <a href="addProduct.php">Ajouter un produit</a>
+                    <?php endif; ?></li>   
+                <li><?php if (isset($_SESSION['user'])) : ?>
+                        <a href="manageproduct.php">Gérer les produits</a>
+                    <?php endif; ?></li>    
+                <li><a href="#">
+                    <i id="nav-bar-cart" class="fa-solid fa-cart-arrow-down"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Gestion des produits</h2>
+
+        <div id="product-container">
+            <?php foreach($products as $prod): ?>
+            <div class="product_card">
+                <!-- CROIX pour supprimer -->
+                <a href="deleteProduct.php?id=<?= $prod['id'] ?>" class="delete-btn"
+                onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');">✖</a>
+
+                <div class="img_product">
+                    <img src="<?= htmlspecialchars($prod['image']) ?>" 
+                        alt="<?= htmlspecialchars($prod['titre']) ?>" 
+                    >
+                </div>
+                <h3><?= htmlspecialchars($prod['titre']) ?></h3>
+                <div class="info_product">
+                    <p class="product-description"><?= htmlspecialchars($prod['descriptif']) ?></p>
+                    <div class="price_and_cart"> 
+                        <p class="product_price"><?= htmlspecialchars($prod['prix']) ?>€</p>
+                        <!-- BOUTON MODIFIER -->
+                        <button class="edit-btn" data-id="<?= $prod['id'] ?>"
+                            data-titre="<?= htmlspecialchars($prod['titre']) ?>"
+                            data-image="<?= htmlspecialchars($prod['image']) ?>"
+                            data-descriptif="<?= htmlspecialchars($prod['descriptif']) ?>"
+                            data-prix="<?= htmlspecialchars($prod['prix']) ?>">
+                            Modifier
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+
+        <!-- MODAL pour modifier -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Modifier le produit</h3>
+                <form id="editForm" method="POST" action="manageproduct.php">
+                    <input type="hidden" name="id" id="modal-id">
+                    <label>Titre :</label>
+                    <input type="text" name="titre" id="modal-titre" required>
+
+                    <label>Image (URL) :</label>
+                    <input type="text" name="image" id="modal-image" required>
+
+                    <label>Descriptif :</label>
+                    <textarea name="descriptif" id="modal-descriptif" required></textarea>
+
+                    <label>Prix :</label>
+                    <input type="number" step="0.01" name="prix" id="modal-prix" required>
+
+                    <button type="submit">Enregistrer</button>
+                </form>
+            </div>
+        </div>
+</main>
+    <footer>
+        <ul>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">mentions légales</a></li>
+        </ul>
+    </footer>  
+<script src="./assets/manageProducts.js"></script> 
+</body>
+</html>
