@@ -1,0 +1,116 @@
+body {
+    margin: 0;
+}
+ul {
+    list-style: none;
+}
+li a {
+    text-decoration: none;  
+    color: white;
+}
+li a:hover {
+    font-weight: bold;
+}
+h2 {
+    color: chocolate;
+    margin-top: 3%;
+}
+
+/* ------ header */
+
+header {
+    width: 100%;
+    background-color: chocolate;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3%;
+    box-sizing: border-box;
+}
+h1 {
+    color: white;
+}
+nav, #nav-barre  {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 700px;
+    color: white;
+    
+}
+#nav-bar-cart {
+    color:white;
+}
+
+#logout {
+    margin-left: 15px;
+}
+
+footer {
+    width: 100%;
+    height: 200px;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+footer ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* ------ Footer */
+
+footer ul li {
+    margin-bottom: 7%;
+}
+
+
+h2 {
+    margin-left: 2%;
+}
+/* ------Form ------*/
+
+#form_section {
+   margin: 5%;
+}
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+label { 
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+
+}
+
+.form-input {
+    margin-bottom: 20px;
+    width:300px;
+    height: 30px;
+}
+
+#descriptif {
+    height: 90px;
+}
+
+#add_Btn {
+    width: 300px;
+    height:50px;
+    background-color: chocolate;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+}
+#add_Btn:hover {
+    cursor: pointer;
+}

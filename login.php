@@ -4,16 +4,19 @@ include_once("./model/user.model.php");
 
 $message = "";
 
-// Traitement du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if (isset($_POST['action']) && $_POST['action'] === 'login') {
-        // Connexion
-        $login = $_POST['login'];
-        $password = $_POST['password'];
+    $action = $_POST['action'] ?? '';
 
-        $user = loginUser($login, $password);
+    
+    $login = htmlspecialchars(trim($_POST['login'] ?? ''), ENT_QUOTES, 'UTF-8');
+    $password = trim($_POST['password'] ?? '');
+
+    if ($action === 'login') {
+        $user = loginUser($login, $password); 
         if ($user) {
+            session_regenerate_id(true); 
+            unset($user['password']);     
             $_SESSION['user'] = $user;
             header("Location: index.php");
             exit();
@@ -21,11 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $message = "Identifiant ou mot de passe incorrect.";
         }
 
-    } elseif (isset($_POST['action']) && $_POST['action'] === 'register') {
-        // Création de compte
-        $login = $_POST['login'];
-        $password = $_POST['password'];
-
+    } elseif ($action === 'register') {
         if (userExists($login)) {
             $message = "Ce login existe déjà.";
         } else {

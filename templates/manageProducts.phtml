@@ -16,7 +16,7 @@
                 <li>
                     <?php if (isset($_SESSION['user'])) : ?>
                         Bienvenue <?= $_SESSION['user']['login']; ?>
-                        <a href="logout.php">Logout</a>
+                        <a href="logout.php" id="logout">Logout</a>
                     <?php else : ?>
                         <a href="login.php">Login</a>
                     <?php endif; ?>
@@ -29,10 +29,6 @@
                 <li><?php if (isset($_SESSION['user'])) : ?>
                         <a href="manageproduct.php">Gérer les produits</a>
                     <?php endif; ?></li>    
-                <li><a href="#">
-                    <i id="nav-bar-cart" class="fa-solid fa-cart-arrow-down"></i>
-                    </a>
-                </li>
             </ul>
         </nav>
     </header>
@@ -74,22 +70,22 @@
         <div id="editModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h3>Modifier le produit</h3>
+                <h3 id="modal_title">Modifier le produit</h3>
                 <form id="editForm" method="POST" action="manageproduct.php">
                     <input type="hidden" name="id" id="modal-id">
-                    <label>Titre :</label>
-                    <input type="text" name="titre" id="modal-titre" required>
+                    <label class="modal-contant">Titre :</label>
+                    <input type="text" name="titre" id="modal-titre" class="modal-input" required>
 
-                    <label>Image (URL) :</label>
-                    <input type="text" name="image" id="modal-image" required>
+                    <label class="modal-contant">Image (URL) :</label>
+                    <input type="text" name="image" id="modal-image" class="modal-input" required>
 
-                    <label>Descriptif :</label>
-                    <textarea name="descriptif" id="modal-descriptif" required></textarea>
+                    <label class="modal-contant">Descriptif :</label>
+                    <textarea name="descriptif" id="modal-descriptif" class="modal-input" required></textarea>
 
-                    <label>Prix :</label>
-                    <input type="number" step="0.01" name="prix" id="modal-prix" required>
+                    <label class="modal-contant">Prix :</label>
+                    <input type="number" step="0.01" name="prix" id="modal-prix" class="modal-input" required>
 
-                    <button type="submit">Enregistrer</button>
+                    <button type="submit" class="modal-contant" id="submit_change">Enregistrer</button>
                 </form>
             </div>
         </div>

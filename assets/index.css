@@ -37,6 +37,10 @@ nav, #nav-barre  {
 #nav-bar-cart {
     color:white;
 }
+
+#logout {
+    margin-left: 15px;
+}
 #product-section {
     display: flex;
     flex-direction: column;
@@ -46,13 +50,16 @@ nav, #nav-barre  {
 #product-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     margin: 1%;
 
 }
 .product_card {
     position: relative;
-    width: 22%;
-    margin: 3%;
+    width: 20%;
+    height: 400px;
+    margin: 2%;
     border: 1px solid black;
     border-radius: 5%;
     display: flex;
@@ -125,4 +132,84 @@ footer ul {
 
 footer ul li {
     margin-bottom: 7%;
+}
+
+/* ===== MODAL PRODUIT  ===== */
+.product-view-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Carte agrandie */
+.product-view-modal__card {
+    width: 420px;
+    max-width: 90%;
+    background: white;
+    border-radius: 10px;
+    padding-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    position: relative;
+    padding: 15px;
+}
+
+/* Image */
+.product-view-modal__img {
+    height: 300px;
+}
+
+/* Bouton fermer */
+.product-view-modal__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 35px;
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+}
+
+/* Bouton panier demo */
+.product-view-add-btn {
+    background-color: chocolate;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.product-view-add-btn:hover {
+    background-color: #a0522d;
+    transform: scale(1.05);
+}
+
+/* Feedback */
+.product-view-feedback {
+    display: none;
+    color: green;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+/* Image cliquable sur les cartes */
+.js-open-product-modal {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.js-open-product-modal:hover {
+    transform: scale(1.05);
 }

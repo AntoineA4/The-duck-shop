@@ -7,22 +7,24 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
-// 🔹 TRAITEMENT DE LA MODIFICATION
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
-    $id = $_POST['id'];
-    $titre = $_POST['titre'];
-    $image = $_POST['image'];
-    $descriptif = $_POST['descriptif'];
-    $prix = $_POST['prix'];
+
+    $id = filter_var($_POST['id'], FILTER_VALIDATE_INT);
+    $titre = htmlspecialchars(trim($_POST['titre'] ?? ''), ENT_QUOTES, 'UTF-8');
+    $image = filter_var(trim($_POST['image'] ?? ''), FILTER_SANITIZE_URL);
+    $descriptif = htmlspecialchars(trim($_POST['descriptif'] ?? ''), ENT_QUOTES, 'UTF-8');
+    $prix = filter_var($_POST['prix'] ?? '', FILTER_VALIDATE_FLOAT);
+
+    if ($id === false || $prix === false) {
+        die("Données invalides !");
+    }
 
     updateProduct($id, $titre, $image, $descriptif, $prix);
 
-    // Reload pour voir les changements
     header("Location: manageproduct.php");
     exit();
 }
 
-// Récupérer tous les produits pour l'affichage
 $products = getAllProduct();
 
 include("./templates/manageProducts.phtml");

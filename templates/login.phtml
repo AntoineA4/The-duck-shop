@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/index.css">
+    <link rel="stylesheet" href="./assets/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Document</title>
 </head>
@@ -22,27 +22,33 @@
             <p class="message"><?= htmlspecialchars($message) ?></p>
         <?php endif; ?>
 
-        <!-- FORMULAIRE LOGIN -->
-        <form id="login-form" method="POST" action="login.php">
-            <input type="hidden" name="action" value="login">
-            <label>Login :</label>
-            <input type="text" name="login" required>
-            <label>Mot de passe :</label>
-            <input type="password" name="password" required>
-            <button type="submit">Se connecter</button>
-        </form>
+        <!-- CONTAINER POUR FORMULAIRES -->
+        <div id="form-container">
 
-        <p id="toggle-register">Créer un compte</p>
+            <!-- FORMULAIRE LOGIN -->
+            <form id="login-form" method="POST" action="login.php">
+                <input type="hidden" name="action" value="login">
+                <label>Login :</label>
+                <input type="text" name="login" required>
+                <label>Mot de passe :</label>
+                <input type="password" name="password" required>
+                <button type="submit">Se connecter</button>
+            </form>
 
-        <!-- FORMULAIRE INSCRIPTION (caché par défaut) -->
-        <form id="signup-form" method="POST" action="login.php" style="display:none;">
-            <input type="hidden" name="action" value="register">
-            <label>Login :</label>
-            <input type="text" name="login" required>
-            <label>Mot de passe :</label>
-            <input type="password" name="password" required>
-            <button type="submit">S'inscrire</button>
-        </form>
+            <!-- FORMULAIRE INSCRIPTION -->
+            <form id="signup-form" method="POST" action="login.php" style="display:none;">
+                <input type="hidden" name="action" value="register">
+                <label>Login :</label>
+                <input type="text" name="login" required>
+                <label>Mot de passe :</label>
+                <input type="password" name="password" required>
+                <button type="submit">S'inscrire</button>
+            </form>
+
+            <!-- BOUTON TOGGLE EN BAS -->
+            <p id="toggle-register">Créer un compte</p>
+
+        </div>
     </main>
     <footer>
         <ul>
@@ -52,15 +58,19 @@
         </ul>
     </footer>   
     <script>
-        // Toggle entre login et signup
         const toggle = document.getElementById("toggle-register");
         const signupForm = document.getElementById("signup-form");
+        const loginForm = document.getElementById("login-form");
 
         toggle.addEventListener("click", () => {
-            if(signupForm.style.display === "none") {
+            if (signupForm.style.display === "none") {
                 signupForm.style.display = "block";
+                loginForm.style.display = "none"; // on cache le formulaire login
+                toggle.textContent = "Se connecter"; // on change le texte
             } else {
                 signupForm.style.display = "none";
+                loginForm.style.display = "block"; // on réaffiche le login
+                toggle.textContent = "Créer un compte"; // on remet le texte original
             }
         });
     </script>
