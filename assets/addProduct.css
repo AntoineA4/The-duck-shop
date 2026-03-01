@@ -1,5 +1,18 @@
 body {
     margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #f5f7fa, #e4e8f0);
+    }
+main {
+    flex:1;
+}
+h1, h2, h3 {
+    font-family: "DynaPuff", system-ui;
+}
+p, label {
+    font-family: "Montserrat", sans-serif;
 }
 ul {
     list-style: none;
@@ -7,6 +20,7 @@ ul {
 li a {
     text-decoration: none;  
     color: white;
+    font-family: "Montserrat", sans-serif;
 }
 li a:hover {
     font-weight: bold;
@@ -20,6 +34,7 @@ h2 {
 
 header {
     width: 100%;
+    height: 100px;
     background-color: chocolate;
     display:flex;
     justify-content: space-between;
@@ -40,6 +55,16 @@ nav, #nav-barre  {
 }
 #nav-bar-cart {
     color:white;
+}
+
+
+#burger-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
 }
 
 #logout {
@@ -96,6 +121,9 @@ label {
     margin-bottom: 20px;
     width:300px;
     height: 30px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 #descriptif {
@@ -110,7 +138,113 @@ label {
     border-radius: 5px;
     color: white;
     font-size: 18px;
+    transition: all 0.2s ease;
 }
+
 #add_Btn:hover {
     cursor: pointer;
+    background-color: #a0522d;
+    transform: translateY(-1px);
+}
+@media screen and (max-width: 900px) {
+
+    header {
+        padding: 10px 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    nav {
+        margin-left: auto;
+    }
+
+    #nav-barre {
+        gap: 15px;
+    }
+
+    #form-container {
+        width: 90%;
+        margin: 30px auto;
+    }
+
+    label {
+        display: block;
+        margin-top: 15px;
+        font-size: 16px;
+    }
+
+    input {
+        display: block;
+        width: 100%;
+        margin: 8px 0 15px 0;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    button {
+        width: 100%;
+        height: 45px;
+        font-size: 16px;
+    }
+
+    footer {
+        height: auto;
+        padding: 30px 0;
+    }
+
+    footer ul li {
+        margin-bottom: 10px;
+    }
+
+    #burger-btn {
+        display: block;
+        z-index: 2001;
+    }
+
+    #main-nav {
+        position: fixed;
+        top: 0;
+        right: -260px;  
+        width: 240px;
+        height: auto;
+        background-color: chocolate;
+        border-radius: 0 0 0 12px;
+        padding: 80px 0 20px 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        transition: right 0.3s ease;
+        z-index: 1500;
+    }
+
+    #main-nav.active {
+        right: 0;
+    }
+
+    #nav-barre {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 18px;
+        text-align: center;
+    }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .nav-user {
+        border-bottom: 1px solid rgba(255,255,255,0.3);
+        width: 80%;
+        padding-bottom: 10px;
+        margin-bottom: 8px;
+        font-size: 16px;
+    }
+
+    #logout {
+        margin-left: 0;
+    }
 }

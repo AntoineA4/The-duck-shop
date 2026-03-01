@@ -1,5 +1,12 @@
 body {
     margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #f5f7fa, #e4e8f0);
+    }
+main {
+    flex:1;
 }
 ul {
     list-style: none;
@@ -7,6 +14,7 @@ ul {
 li a {
     text-decoration: none;  
     color: white;
+    font-family: "Montserrat", sans-serif;
 }
 li a:hover {
     font-weight: bold;
@@ -16,33 +24,38 @@ h2 {
     margin-left: 2%;
     color: chocolate;
 }
+p {
+    font-family: "Montserrat", sans-serif;
+}
 
 /* ------ header */
 
 header {
     width: 100%;
+    height: 100px;
     background-color: chocolate;
-    display:flex;
-    justify-content: space-between;
+    display: flex;
     align-items: center;
-    padding: 0 3%;
+    padding: 0 20px;
     box-sizing: border-box;
 }
+
 h1 {
     color: white;
-}
-nav, #nav-barre  {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 700px;
-    color: white;
-    
-}
-#nav-bar-cart {
-    color:white;
+    margin: 0;
 }
 
+nav {
+    margin-left: auto;
+}
+
+#nav-barre {
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+/*------- Footer -------*/
 footer {
     width: 100%;
     height: 200px;
@@ -60,39 +73,148 @@ footer ul {
     align-items: center;
     justify-content: center;
 }
-/* ------ Footer */
 
 footer ul li {
     margin-bottom: 7%;
 }
-#form-container {
-    margin-left: 3%;
-}
-label, #toggle-register {
-    font-size: 18px;
-}
-input {
-    margin-left: 10px;
-    margin-right: 20px;
-}
-button {
-    width:200px;
-    height:30px;
-    background-color: chocolate;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 18px;
-}
-button:hover {
-    cursor: pointer;
-}
-#toggle-register {
-    color:blue;
-    text-decoration: underline;
+
+/*------ Main ------*/
+
+.login-main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
+
+#form-container {
+    background: white;
+    padding: 35px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    width: 420px;
+    max-width: 95%;
+    margin: 0; 
+}
+
+label {
+    display: block;
+    font-size: 16px;
+    margin-top: 15px;
+    font-family: "Montserrat", sans-serif;
+}
+
+
+input {
+    width: 100%;
+    margin: 8px 0 15px 0;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+
+input:focus {
+    outline: none;
+    border-color: chocolate;
+    box-shadow: 0 0 0 2px rgba(210, 105, 30, 0.2);
+}
+
+
+button {
+    width: 100%;
+    height: 45px;
+    background-color: chocolate;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #a0522d;
+    transform: translateY(-1px);
+}
+
+
+#toggle-register {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 16px;
+}
 #toggle-register:hover {
     cursor: pointer;
-    opacity: 0.7;
+    
+}
+
+@media screen and (max-width: 768px) {
+
+    header {
+        padding: 10px 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    #nav-barre {
+        gap: 15px;
+    }
+
+    #form-container {
+        margin: 20px auto;
+        width: 90%;
+    }
+
+    input {
+        display: block;
+        margin: 10px 0;
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .login-main {
+        align-items: flex-start; 
+        padding-top: 40px;
+    }
+
+    #form-container {
+        width: 100%;
+        padding: 25px 20px;
+        border-radius: 10px;
+    }
+
+    #form-container h2 {
+        font-size: 22px;
+    }
+
+    label {
+        font-size: 15px;
+    }
+
+    input {
+        font-size: 16px; 
+        padding: 12px;
+    }
+
+    button {
+        height: 48px;
+        font-size: 17px;
+    }
 }

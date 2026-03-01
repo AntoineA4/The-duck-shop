@@ -5,23 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/addProduct.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Copse&family=DynaPuff:wght@400..700&family=Gluten:wght@100..900&display=swap" rel="stylesheet">
+
     <title>Document</title>
 </head>
 <body>
     <header>
         <h1>My ducky world</h1>
-        <nav>
+        <nav id="main-nav">
             <ul id="nav-barre">
-                <li>
-                    <?php if (isset($_SESSION['user'])) : ?>
-                        Bienvenue <?= $_SESSION['user']['login']; ?>
+                <?php if (isset($_SESSION['user'])) : ?>
+                    <li class="nav-user">
+                        Bonjour <?= htmlspecialchars($_SESSION['user']['login']); ?>
+                    </li>
+                    <li>
                         <a href="logout.php" id="logout">Logout</a>
-                    <?php else : ?>
+                    </li>
+                <?php else : ?>
+                    <li>
                         <a href="login.php">Login</a>
-                    <?php endif; ?>
-                </li>
+                    </li>
+                <?php endif; ?>
                 <li><a href="index.php">Accueil</a></li>
-                <li><a href="#">Produits</a></li>
                 <li><?php if (isset($_SESSION['user'])) : ?>
                         <a href="addProduct.php">Ajouter un produit</a>
                     <?php endif; ?></li>   
@@ -30,6 +37,11 @@
                     <?php endif; ?></li>    
             </ul>
         </nav>
+        <div class="header-right">
+            <button id="burger-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
     </header>
     <main>
         <h2>Ajouter Produits</h2>
@@ -62,6 +74,7 @@
             <li><a href="#">À propos</a></li>
             <li><a href="#">mentions légales</a></li>
         </ul>
-    </footer>   
+    </footer>  
+    <script src="./assets/menuBurger.js"></script> 
 </body>
 </html>
